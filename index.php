@@ -751,7 +751,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <!-- News -->
 
-                                <?php // Yayaya we gonna do some php tricks ?>
+                            <?php // Yayaya we gonna do some php tricks ?>
 
                             <ul class="events-list">
                                 <li class="event-titles">
@@ -775,7 +775,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                     }
 
                                     $url = $row->post_name;
-                                    $url = "news/" . $url;
+                                    $url = "news/" . $row->ID . "/" . $url;
 
                                     $title = $row->post_title;
                                     $title = utf8_encode($title);
@@ -808,7 +808,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
             </main>
         </div>
 
-<?php include ('inc/modals.php'); ?>
+        <?php include ('inc/modals.php'); ?>
 
         <!--Analytics-->
         <script>

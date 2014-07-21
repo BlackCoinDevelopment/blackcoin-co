@@ -2,9 +2,8 @@
 include('lib.pdo.php');
 include('config.inc.php');
 
-$news = $_REQUEST["page"];
-//echo $news;
-$result = Db::Query("SELECT * FROM `wp_posts` WHERE post_name = '$news' AND post_status = 'publish'");
+$id = filter_var($_REQUEST["page"], FILTER_SANITIZE_NUMBER_INT);
+$result = Db::Query("SELECT * FROM `wp_posts` WHERE ID = '$id' AND post_status = 'publish'");
 
 $title = "";
 $content = "";
@@ -12,13 +11,12 @@ $author = "";
 $date = "";
 
 while ($row = Db::Fetch($result)) {
-    $title = $row->post_title; // title
-    $title = utf8_encode($title); // title
-    $content = nl2br($row->post_content); // All content of the article
+    $title = utf8_encode($row->post_title); // title
+    $content = nl2br($row->post_content);
+//    $content = nl2br($content); // All content of the article
 
-    $date = $row->post_date;
-    $date = explode(' ', $date);
-    $date = $date[0];
+    $date_parts = explode(' ', $row->post_date);
+    $date = $date_parts[0];
 
     $uid = $row->post_author;
     $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
@@ -55,14 +53,14 @@ if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!-- Basic favicons -->
-        <link rel="shortcut icon" sizes="16x16 32x32 48x48 64x64" href="../img/favicon.png" />
+        <link rel="shortcut icon" sizes="16x16 32x32 48x48 64x64" href="../../img/favicon.png" />
         <!-- Windows 8 Tiles -->
         <meta name="msapplication-TileColor" content="#FFFFFF" />
 
-        <link rel='stylesheet' href='../css/fonts.css?v=4' type='text/css' media='all' />
-        <link rel='stylesheet' href='../css/style.css?v=4' type='text/css' media='all' />
-        <script type='text/javascript' src='../js/jquery_main.js'></script>
-        <script type='text/javascript' src='../js/jquery-minified.js'></script>
+        <link rel='stylesheet' href='../../css/fonts.css?v=4' type='text/css' media='all' />
+        <link rel='stylesheet' href='../../css/style.css?v=4' type='text/css' media='all' />
+        <script type='text/javascript' src='../../js/jquery_main.js'></script>
+        <script type='text/javascript' src='../../js/jquery-minified.js'></script>
     </head>
     <body>
         <div class="pushWrapper">
@@ -75,7 +73,7 @@ if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
                 </button>
                 <!-- Logo -->
                 <a class="headerLogo smoothScroll" href="http://www.blackcoin.co">
-                    <img style="margin-top:1.5%;padding-left:9.5%;display:inline-block;" src="../img/navlogo2.png" alt="BlackCoin"> <!--fix this-->
+                    <img style="margin-top:1.5%;padding-left:9.5%;display:inline-block;" src="../../img/navlogo2.png" alt="BlackCoin"> <!--fix this-->
                 </a>
             </header>
 
@@ -83,7 +81,7 @@ if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
             <div class="sidebar">
                 <nav class="mainMenu">
                     <ul class="menu">
-                        <li><a href="../index.php" ><i class="icon-bbshield"></i><span class="text">BlackCoin Homepage</span></a></li>
+                        <li><a href="../../index.php" ><i class="icon-bbshield"></i><span class="text">BlackCoin Homepage</span></a></li>
                     </ul>
                 </nav>
                 <nav class="backToTop">
@@ -135,12 +133,12 @@ if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
 
         </script>
 
-        <script type='text/javascript' src='../js/jquery.mobile.custom.min_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/modernizr.custom_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/response.min_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/idangerous.swiper.min_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/waypoints.min_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/jquery.stellar.min_2b23bb4a.js'></script>
-        <script type='text/javascript' src='../js/main_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/jquery.mobile.custom.min_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/modernizr.custom_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/response.min_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/idangerous.swiper.min_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/waypoints.min_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/jquery.stellar.min_2b23bb4a.js'></script>
+        <script type='text/javascript' src='../../js/main_2b23bb4a.js'></script>
     </body>
 </html>
