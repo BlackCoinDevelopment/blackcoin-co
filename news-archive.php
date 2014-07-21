@@ -1,5 +1,6 @@
 <?php include ('lib.pdo.php'); ?>
 <?php include ('news.fn.php'); ?>
+<?php include ('config.inc.php'); ?>
 
 <?php if(isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
 	PrintArchiveJSON();
@@ -15,8 +16,6 @@ function PrintArchive($json = false){
 		$jsonArr = array();
 	}
 	
-	Db::Connect('mysql:dbname=blackcoin_wp1;host=localhost', 'blackcoin_wp1', 'E*RWoUYf4O17#(6');
-
 	$result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC");
 		
 	while ($row = Db::Fetch($result)) {
