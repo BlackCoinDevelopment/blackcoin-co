@@ -1,5 +1,6 @@
 <?php include ('lib.pdo.php'); ?>
 <?php include ('news.fn.php'); ?>
+<?php include ('config.inc.php'); ?>
 
 <?php
 $wallet = array();
@@ -760,8 +761,6 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                 </li>
                                 <?php // GetSingleNewsItem("d1f41b86a9da"); ?>
                                 <?php
-                                Db::Connect('mysql:dbname=blackcoin_wp1;host=localhost', 'blackcoin_wp1', 'E*RWoUYf4O17#(6');
-
                                 $result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
 
                                 while ($row = Db::Fetch($result)) {
