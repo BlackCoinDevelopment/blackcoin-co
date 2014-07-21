@@ -27,7 +27,7 @@ function PrintArchive($json = false) {
         }
 
         $url = $row->post_name;
-        $url = "news/" . $url;
+        $url = "news/" . $row->ID . "/" . $url;
 
         $title = $row->post_title;
         $title = utf8_encode($title);
