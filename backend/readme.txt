@@ -1,0 +1,1 @@
+The backend is basically an installation of WP
