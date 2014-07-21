@@ -9,6 +9,8 @@ $wallet["linux"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.0
 $wallet["linux_ver"] = "v1.1.0.1";
 $wallet["mac"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/BlackCoin-Qt-MacOSX-v1.1.0.1.zip";
 $wallet["mac_ver"] = "v1.1.0.1";
+
+// edit test
 ?>
 
 <!DOCTYPE html>
