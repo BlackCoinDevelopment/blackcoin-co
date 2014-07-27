@@ -11,7 +11,7 @@ if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
 } else {
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     switch ($lang) {
-        case "cn":
+        case "zh":
             include('lang.cn.php');
             break;
         case "es":
