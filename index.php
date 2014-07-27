@@ -1,6 +1,15 @@
 <?php include ('lib.pdo.php'); ?>
 <?php include ('news.fn.php'); ?>
 <?php include ('config.inc.php'); ?>
+<?php
+if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
+    include ('lang.cn.php');
+} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "es") {
+    include ('lang.es.php');
+} else {
+    include ('lang.en.php');
+}
+?>
 
 <?php
 $wallet = array();
@@ -18,7 +27,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
 
 <html lang="en-US">
     <head>
-        <title>BlackCoin, Currency of the Future</title>
+        <title><?= PAGE_TITLE; ?></title>
         <meta charset="UTF-8" />
         <meta name="description" content="" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -53,18 +62,18 @@ $wallet["mac_ver"] = "v1.1.0.1";
             <div class="sidebar">
                 <nav class="mainMenu">
                     <ul class="menu">
-                        <li><a class="smoothScroll" href="#info" ><i class="icon-cust-help"></i><span class="text">What is BlackCoin?</span></a></li>
-                        <li><a class="smoothScroll" href="#uses" ><i class="icon-cust-book"></i><span class="text">Why use BlackCoin?</span></a></li>
-                        <li><a class="smoothScroll" href="#specs" ><i class="icon-cust-analytics"></i><span class="text">Specs &amp; Features</span></a></li>				 
-                        <li><a class="smoothScroll" href="#getting-started" ><i class="icon-cust-write"></i><span class="text">Getting Started</span></a></li>
-                        <li><a class="smoothScroll" href="#wallets" ><i class="icon-cust-laptop-user"></i><span class="text">Wallets</span></a></li>
-                        <li><a class="smoothScroll" href="#community" title="Membership Form"><i class="icon-cust-user"></i><span class="text">Community</span></a></li>
-                        <li><a class="smoothScroll" href="#news" ><i class="icon-cust-calendar"></i><span class="text">News</span></a></li>
+                        <li><a class="smoothScroll" href="#info" ><i class="icon-cust-help"></i><span class="text"><?= SIDEBAR_WHAT; ?></span></a></li>
+                        <li><a class="smoothScroll" href="#uses" ><i class="icon-cust-book"></i><span class="text"><?= SIDEBAR_WHY; ?></span></a></li>
+                        <li><a class="smoothScroll" href="#specs" ><i class="icon-cust-analytics"></i><span class="text"><?= SIDEBAR_SPECS; ?></span></a></li>				 
+                        <li><a class="smoothScroll" href="#getting-started" ><i class="icon-cust-write"></i><span class="text"><?= SIDEBAR_GET_STARTED; ?></span></a></li>
+                        <li><a class="smoothScroll" href="#wallets" ><i class="icon-cust-laptop-user"></i><span class="text"><?= SIDEBAR_WALLETS; ?></span></a></li>
+                        <li><a class="smoothScroll" href="#community" title="Membership Form"><i class="icon-cust-user"></i><span class="text"><?= SIDEBAR_COMMUNITY; ?></span></a></li>
+                        <li><a class="smoothScroll" href="#news" ><i class="icon-cust-calendar"></i><span class="text"><?= SIDEBAR_NEWS; ?></span></a></li>
                     </ul>
                 </nav>
                 <nav class="backToTop">
                     <ul class="backToTop-menu">
-                        <li><a class="smoothScroll" href="#info" title="to the top"><i class="icon-cust-arrow"></i><span class="text">Back to top</span></a></li>
+                        <li><a class="smoothScroll" href="#info" title="to the top"><i class="icon-cust-arrow"></i><span class="text"><?= BACK_TO_TOP; ?></span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -77,8 +86,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="content">
                         <div class="contentContainer">
                             <h1>
-                                <span class="sub">BlackCoin</span>
-                                <span class="main">Currency of the future</span>
+                                <span class="sub"><?= BLACKCOIN; ?></span>
+                                <span class="main"><?= BC_SUBTITLE; ?></span>
                             </h1>
 
                         </div>
@@ -86,7 +95,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                 </section>
 
                 <div id="notifications">
-                    <p>The BlackCoin wallet has been updated to v1.1.0.1. Please update. Hardfork at block 319000!</p>
+                    <p><?= ALERT_NOTIFICATION; ?></p>
                 </div>
 
                 <style>
@@ -114,15 +123,15 @@ $wallet["mac_ver"] = "v1.1.0.1";
                 <section class="section-quickwallet">
                     <div class="content">
                         <div class="quickwalletContainer">
-                            <p>Choose your option: <span id="blackcoin-hl" onclick="$('#blackhaloshowdiv').hide();
+                            <p><?= CHOOSE_OPTION; ?> <span id="blackcoin-hl" onclick="$('#blackhaloshowdiv').hide();
                         $('#blackcoinshowdiv').show();
                         $('#blackcoin-hl').attr('style', 'color:#584930');
                         $('#blackhalo-hl').attr('style', 'color:#9E9E9E;');
-                        $('#blackhalo-hl').addClass('hoverable');">BlackCoin</span> | <span id="blackhalo-hl" onclick="$('#blackhaloshowdiv').show();
+                        $('#blackhalo-hl').addClass('hoverable');"><?= BLACKCOIN; ?></span> | <span id="blackhalo-hl" onclick="$('#blackhaloshowdiv').show();
                         $('#blackcoinshowdiv').hide();
                         $('#blackcoin-hl').attr('style', 'color:#9E9E9E');
                         $('#blackhalo-hl').attr('style', 'color:#584930;');
-                        $('#blackcoin-hl').addClass('hoverable');">BlackHalo (Smart Contracts Client Beta)</span></p>
+                        $('#blackcoin-hl').addClass('hoverable');"><?= BLACKHALO_OPT; ?></span></p>
                             <div id="blackcoinshowdiv">
                                 <a class="btn-wallet" href="<?php echo $wallet["windows"]; ?>"><img class="icon" src="./img/profile/windows-sm.png" alt="">Windows</a>
                                 <a class="btn-wallet" href="<?php echo $wallet["linux"]; ?>"><img class="icon" src="./img/profile/linux-sm.png" alt="">Linux</a>
@@ -157,33 +166,33 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <div class="contentLeft">						
                                 <div class="quarters">
-                                    <h2>Innovation</h2>
-                                    <p><a href="#proof-of-stake" class="modalbtn modal-trigger">Proof of Stake</a> adds speed, security and energy efficiency over most digital currencies. <!--<a href="http://www.blackhalo.info/" class="modalbtn modal-trigger" target="_blank" alt="BlackHalo Website">BlackHalo client</a> brings smart contracts, multi-signature and more. --></p>
+                                    <h2><?= SUB_INTRO_INNOVATION; ?></h2>
+                                    <p><?= SUB_INTRO_INNOVATION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#info" class="smoothScroll btn">What is BlackCoin?</a>
+                                        <a href="#info" class="smoothScroll btn"><?= SUB_INTRO_INNOVATION_EXTRA; ?></a>
                                     </div>
                                 </div>
                                 <div class="quarters">
-                                    <h2>Liberation</h2>		
-                                    <p>Free from central authorities and banks, BlackCoin and BlackHalo gives the power back to the people.</p>	
+                                    <h2><?= SUB_INTRO_LIBERATION; ?></h2>		
+                                    <p><?= SUB_INTRO_LIBERATION_TEXT; ?></p>	
                                     <div class="btnContainer">
-                                        <a href="#uses" class="smoothScroll btn">Why use BlackCoin?</a>
+                                        <a href="#uses" class="smoothScroll btn"><?= SUB_INTRO_LIBERATION_EXTRA; ?></a>
                                     </div>							
                                 </div>					
                             </div>
                             <div class="contentRight">
                                 <div class="quarters">
-                                    <h2>Adoption</h2>
-                                    <p>BlackCoin is quickly gaining the support of people, merchants and services worldwide.</p>
+                                    <h2><?= SUB_INTRO_ADOPTION; ?></h2>
+                                    <p><?= SUB_INTRO_ADOPTION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#getting-started" class="smoothScroll btn">Get Started Now</a>
+                                        <a href="#getting-started" class="smoothScroll btn"><?= SUB_INTRO_ADOPTION_EXTRA ?></a>
                                     </div>
                                 </div>
                                 <div class="quarters">
-                                    <h2>Dedication</h2>
-                                    <p>BlackCoin has a large, supportive online community of both users and developers.</p>
+                                    <h2><?= SUB_INTRO_DEDICATION; ?></h2>
+                                    <p><?= SUB_INTRO_DEDICATION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#community" class="smoothScroll btn">Join the Community</a>
+                                        <a href="#community" class="smoothScroll btn"><?= SUB_INTRO_DEDICATION_EXTRA ?></a>
                                     </div>
                                 </div>					
                             </div>
@@ -198,8 +207,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">What is</span>
-                                BlackCoin	    
+                                <span class="sub"><?= WHAT_IS_TITLE; ?></span>
+<?= BLACKCOIN; ?>	    
                             </h2>
                         </div>
                     </div>
@@ -212,12 +221,11 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                 </ul>
                             </div>
                             <div class="textContent contentRight">
-                                <h3>A new <span class="em">form</span> of currency</h3>
+                                <h3><?= WHAT_IS_AB_TITLE; ?></h3>
                                 <br>
                                 <div class="user-content">
-                                    <p>BlackCoin is a peer-to-peer digital currency with a distributed, <a href="#decentralized-network" class="modalbtn modal-trigger">decentralized</a> public ledger; that unlike ones held at traditional banks, are viewable and easily audited by the people.</p>
-
-                                    <p>The ability to manage transactions and issue additional BlackCoins is all handled by the network of users utilizing BlackCoin. Because the BlackCoin network is run by the people, holders of BlackCoin receive a <a href="#one-percent-interest" class="modalbtn modal-trigger">1% yearly interest</a> through a process called <a href="#staking" class="modalbtn modal-trigger">staking</a>.</p>
+                                    <p><?= WHAT_IS_AB_TEXT1; ?></p>
+                                    <p><?= WHAT_IS_AB_TEXT2; ?></p>
                                 </div>
                             </div>
                         </div>
@@ -229,23 +237,18 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                 </ul>
                             </div>
                             <div class="textContent contentLeft">
-                                <h3>An innovative new <span class="em">way</span> to transfer money</h3>
+                                <h3><?= WHAT_IS_BC_TITLE; ?></h3>
                                 <br>
                                 <div class="user-content">
-                                    <p>BlackCoin’s technology allows people to send and receive fast, easy and secure payments with friends, family, and merchants anywhere in the world. BlackCoin allows you to manage your finances without the need for a central authority or bank.</p> 
-
-                                    <p>BlackCoin is <a href="#open-source" class="modalbtn modal-trigger">open-source</a> too, meaning that the software that makes it function is completely available for public scrutiny — giving you peace of mind. No one owns BlackCoin, it is not a single entity; anyone can be a part of it.</p>
-
-                                    <p><a href="http://blackhalo.info/" class="modalbtn modal-trigger">BlackHalo</a> is the worlds first functional smart contracting multisig client! It adds many new features, directly into the users hands.</p>
-
+                                    <p><?= WHAT_IS_BC_TEXT1; ?></p>
+                                    <p><?= WHAT_IS_BC_TEXT2; ?></p>
+                                    <p><?= WHAT_IS_BC_TEXT3; ?></p>
                                 </div>
                             </div>
                         </div>
-
                         <div class="btnContainer">
-                            <a href="#getting-started" class="smoothScroll btn">Get Started Now</a>
+                            <a href="#getting-started" class="smoothScroll btn"><?= WHAT_IS_BC_GETSTARTED; ?></a>
                         </div>
-
                     </div>
                 </section>
 
@@ -255,7 +258,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">Why use</span>
+                                <span class="sub"><?= WHY_USE_TITLE; ?></span>
                                 BlackCoin		    
                             </h2>
                         </div>
@@ -265,9 +268,9 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <!-- Menu -->
                             <ul class="pricing-menu">
-                                <li class="selected"><a href="#">Individuals</a></li>
-                                <li><a href="#">Businesses</a></li>
-                                <li><a href="#">Developers</a></li>
+                                <li class="selected"><a href="#"><?= WHY_USE_INDIVIDUALS; ?></a></li>
+                                <li><a href="#"><?= WHY_USE_BUSINESSES; ?></a></li>
+                                <li><a href="#"><?= WHY_USE_DEVELOPERS; ?></a></li>
                             </ul>
                             <!-- L/R Nav -->
                             <a href="#" class="pricing-nav pricing-nav-prev"><i class="icon-cust-arrow-left"></i></a>
@@ -278,76 +281,70 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                     <div class="pricing-slide">
                                         <hgroup>
                                             <h3>
-                                                <span class="main">Individuals</span>
-                                                <span class="sub">Why individuals use</span>
-                                                <span class="super-sub">BlackCoin</span>
+                                                <span class="main"><?= WHY_USE_INDIVIDUALS; ?></span>
+                                                <span class="sub"><?= WHY_USE_INDIVIDUALS_WHY; ?></span>
+                                                <span class="super-sub"><?= BLACKCOIN; ?></span>
                                             </h3>
                                         </hgroup>
                                         <div class="pricing-slide-content user-content">
-                                            <p>Individuals use BlackCoin to transfer money to and from friends, family, and merchants anywhere in the world. BlackCoin is an ideal currency for both <a href="#point-of-sale" class="modalbtn modal-trigger">face to face</a> and <a href="#international-payments" class="modalbtn modal-trigger">international</a> digital commerce. With the <a href="http://blackhalo.info/" class="modalbtn modal-trigger">BlackHalo</a> client you can make unbreakable contracts and barter anything you like.</p>
-
-                                            <p>Using BlackCoin is fast, secure, and rewarding.</p>
-
+                                            <p><?= WHY_USE_INVIDIVUALS_TEXT1; ?></p>
+                                            <p><?= WHY_USE_INVIDIVUALS_TEXT2; ?></p>
                                             <ul>
-                                                <li>Security and control over your money</li>
-                                                <li><a href="#international-payments" class="modalbtn modal-trigger">Fast international payments</a></li>
-                                                <li>Zero or low fees</li>
-                                                <li>Decentralized Ebay</li>
-                                                <li><a href="#one-percent-interest" class="modalbtn modal-trigger">1% compound interest yearly</a></li>
-                                                <li>Mobile payments made easy</li>
+                                                <li><?= WHY_USE_INVIDIVUALS_LI1; ?></li>
+                                                <li><?= WHY_USE_INVIDIVUALS_LI2; ?></li>
+                                                <li><?= WHY_USE_INVIDIVUALS_LI3; ?></li>
+                                                <li><a href="http://www.blackauctions.eu/" target="_blank"><?= WHY_USE_INVIDIVUALS_LI4; ?></a></li>
+                                                <li><?= WHY_USE_INVIDIVUALS_LI5; ?></li>
+                                                <li><?= WHY_USE_INVIDIVUALS_LI6; ?></li>
                                             </ul>
-
                                             <div class="btnContainer">
-                                                <a href="#getting-started" class="smoothScroll btn">Get Started Now</a>
+                                                <a href="#getting-started" class="smoothScroll btn"><?= WHY_USE_INVIDIVUALS_EXTRA; ?></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pricing-slide">
                                         <hgroup>
                                             <h3>
-                                                <span class="main">Businesses</span>
-                                                <span class="sub">Why businesses use</span>
-                                                <span class="super-sub">BlackCoin</span>
+                                                <span class="main"><?= WHY_USE_BUSINESSES; ?></span>
+                                                <span class="sub"><?= WHY_USE_BUSINESSES_WHY; ?></span>
+                                                <span class="super-sub"><?= BLACKCOIN; ?></span>
                                             </h3>
                                         </hgroup>
                                         <div class="pricing-slide-content user-content">
-                                            <p>Businesses use BlackCoin to join an emerging market in support of a faster, easier way to transfer value between two parties. BlackCoin offers a number of advantages over traditional <a href="#point-of-sale" class="modalbtn modal-trigger">point of sale</a> and <a href="#international-payments" class="modalbtn modal-trigger">international</a> payment systems. The <a href="http://blackhalo.info/" class="modalbtn modal-trigger">BlackHalo</a> client is a powerful tool for any type of contract or trade.</p>
-                                            <p>Accepting BlackCoin makes accepting digital currency easy.</p>
-
+                                            <p><?= WHY_USE_BUSINESSES_TEXT1; ?></p>
+                                            <p><?= WHY_USE_BUSINESSES_TEXT2; ?></p>
                                             <ul>
-                                                <li>Protection against fraud</li>
-                                                <li>The lowest fees out there</li>
-                                                <li>No PCI compliance required</li>
-                                                <li>Accounting transparency</li>
-                                                <li>Unbreakable contracts</li>
-                                                <li><a href="#international-payments" class="modalbtn modal-trigger">Fast international payments</a></li>
+                                                <li><?= WHY_USE_BUSINESSES_LI1; ?></li>
+                                                <li><?= WHY_USE_BUSINESSES_LI2; ?></li>
+                                                <li><?= WHY_USE_BUSINESSES_LI3; ?></li>
+                                                <li><?= WHY_USE_BUSINESSES_LI4; ?></li>
+                                                <li><?= WHY_USE_BUSINESSES_LI5; ?></li>
                                             </ul>
-
                                             <div class="btnContainer">
-                                                <a href="#features" class="smoothScroll btn">BlackCoin's Features</a>
+                                                <a href="#features" class="smoothScroll btn"><?= WHY_USE_BUSINESSES_EXTRA; ?></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pricing-slide">
                                         <hgroup>
                                             <h3>
-                                                <span class="main">Developers</span>
-                                                <span class="sub">Why developers use</span>
-                                                <span class="super-sub">BlackCoin</span>
+                                                <span class="main"><?= WHY_USE_DEVELOPERS; ?></span>
+                                                <span class="sub"><?= WHY_USE_DEVELOPERS_WHY; ?></span>
+                                                <span class="super-sub"><?= BLACKCOIN; ?></span>
                                             </h3>
                                         </hgroup>
                                         <div class="pricing-slide-content user-content">
-                                            <p>Developers use BlackCoin as an effective platform to send, hold, and receive payments. BlackCoin is already supported by loads of useful digital infrastructure and has large, dedicated user and development communities.</p>
-                                            <p>BlackCoin's network and specs make it a wise choice as a development platform.</p>
+                                            <p><?= WHY_USE_DEVELOPERS_TEXT1; ?></p>
+                                            <p><?= WHY_USE_DEVELOPERS_TEXT2; ?></p>
                                             <ul>
-                                                <li>Simplest of all payment systems</li>
-                                                <li>Many third party APIs</li>
-                                                <li>Cheap micro payments</li>
-                                                <li>Most of the security is client side</li>
-                                                <li>BlackCoin addresses to track invoices</li>
+                                                <li><?= WHY_USE_DEVELOPERS_LI1; ?></li>
+                                                <li><?= WHY_USE_DEVELOPERS_LI2; ?></li>
+                                                <li><?= WHY_USE_DEVELOPERS_LI3; ?></li>
+                                                <li><?= WHY_USE_DEVELOPERS_LI4; ?></li>
+                                                <li><?= WHY_USE_DEVELOPERS_LI5; ?></li>
                                             </ul>								
                                             <div class="btnContainer">
-                                                <a href="#specs" class="smoothScroll btn">BlackCoin's Tech Specs</a>
+                                                <a href="#specs" class="smoothScroll btn"><?= WHY_USE_DEVELOPERS_EXTRA; ?></a>
                                             </div>
                                         </div>
                                     </div>
@@ -363,8 +360,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">BlackCoin</span>
-                                Specs &amp; Features    
+                                <span class="sub"><?= BLACKCOIN; ?></span>
+<?= SIDEBAR_SPECS; ?>   
                             </h2>
                         </div>
                     </div>
@@ -373,12 +370,12 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <hgroup>
                                 <h2>
-                                    <span class="sub">BlackCoin's</span>
-                                    <span class="main">Specifications</span>
+                                    <span class="sub"><?= SPECS_SUPER; ?></span>
+                                    <span class="main"><?= SPECS_TITLE; ?></span>
                                 </h2>
                             </hgroup>
                             <div class="intro user-content">
-                                <p>Info and data behind BlackCoin</p>
+                                <p><?= SPECS_SUBTITLE; ?></p>
                             </div>
                             <!-- Statistics -->
                             <div class="statistics">
@@ -389,19 +386,19 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                     </div>
                                     <div class="bar" data-percentage="100">
                                         <div class="tooltip tooltip-left">
-                                            <div class="tooltip-label">Minted Coins</div>
+                                            <div class="tooltip-label"><?= SPECS_MINTED_COINS; ?></div>
                                             <div class="tooltip-value">75,000,000</div>
                                         </div>
                                     </div>
                                     <div class="bar" data-percentage="40">
                                         <div class="tooltip tooltip-topRight">
-                                            <div class="tooltip-label">Multi-pool Miners</div>
+                                            <div class="tooltip-label"><?= SPECS_MINERS; ?></div>
                                             <div class="tooltip-value">3,911</div>
                                         </div>
                                     </div>
                                     <div class="bar" data-percentage="15">
                                         <div class="tooltip tooltip-right">
-                                            <div class="tooltip-label">Blockchain</div>
+                                            <div class="tooltip-label"><?= SPECS_BLOCKCHAIN; ?></div>
                                             <div class="tooltip-value">250mb</div>
                                         </div>
                                     </div>
@@ -410,71 +407,60 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                 <ul class="iconStats">
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-barchart"></i></div>
-                                        <div class="iconStats-value">75 Million</div>
-                                        <div class="iconStats-label">Coins</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE1; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT1; ?></div>
                                     </li>
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-analytics"></i></div>
-                                        <div class="iconStats-value">Proof of Stake</div>
-                                        <div class="iconStats-label">Short PoW Phase</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE2; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT2; ?></div>
                                     </li>
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-user"></i></div>
-                                        <div class="iconStats-value">One Percent</div>
-                                        <div class="iconStats-label">Stake Interest</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE3; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT3; ?></div>
                                     </li>	  
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-stopwatch"></i></div>
-                                        <div class="iconStats-value">30 seconds</div>
-                                        <div class="iconStats-label">First Confirmation</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE4; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT4; ?></div>
                                     </li>
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-arrow-cross"></i></div>
-                                        <div class="iconStats-value">1 Minute</div>
-                                        <div class="iconStats-label">Blocks</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE5; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT5; ?></div>
                                     </li>
                                     <li>
                                         <div class="iconStats-icon"><i class="icon-cust-paper"></i></div>
-                                        <div class="iconStats-value">Difficulty</div>
-                                        <div class="iconStats-label">Retarget Every Block</div>
+                                        <div class="iconStats-value"><?= SPECS_TITLE6; ?></div>
+                                        <div class="iconStats-label"><?= SPECS_TEXT6; ?></div>
                                     </li>
 
                                 </ul>
                             </div>
-
                             <div class="section-blackBook" id="features">
-
                                 <hgroup>
                                     <h2 class="in-view">
-                                        <span class="sub">BlackCoin's</span>
-                                        <span class="main">Key Features</span>
+                                        <span class="sub"><?= KEY_FEATURES_SUPER; ?></span>
+                                        <span class="main"><?= KEY_FEATURES_TITLE; ?></span>
                                     </h2>
                                 </hgroup>
                                 <div class="intro user-content">
-                                    <p>BlackCoin has many fundamental advantages</p>
+                                    <p><?= KEY_FEATURES_SUBTITLE; ?></p>
                                 </div>
                                 <div class="user-content" style="text-align:center;">
                                     <div class="contentLeft">
                                         <ul>
-                                            <li>Low Inflation<br />
-                                                <span class="featurelist">BlackCoin was widely distributed over a short proof of work mining phase. No new BlackCoins will ever be minted aside from the <a href="#one-percent-interest" class="modalbtn modal-trigger">1% yearly interest</a> paid to holders of BlackCoin.</span>
-
-                                            <li>Fast Transactions<br />
-                                                <span class="featurelist">BlackCoin's <a href="#proof-of-stake" class="modalbtn modal-trigger">proof of stake</a> system makes the BlackCoin network lightning fast. BlackCoin is the ideal digital currency for face to face transactions and all applications that value speed.</span>							  	  
-                                            <li>Blockchain Security<br />
-                                                <span class="featurelist">BlackCoin's network is <a href="#decentralized-network" class="modalbtn modal-trigger">secure</a> against the attacks other digital currencies face due to their reliability on large-scale mining operations to run their networks.</span>
+                                            <li><?= KEY_FEATURES_UL1_LI1; ?></li>
+                                            <li><?= KEY_FEATURES_UL1_LI2; ?></li>
+                                            <li><?= KEY_FEATURES_UL1_LI3; ?></li>
                                         </ul>
                                     </div>
                                     <div class="contentRight">
                                         <ul>
-                                            <li>Environmentally Sound<br />
-                                                <span class="featurelist">The BlackCoin network does not require the use of large-scale, specialized hardware operations. BlackCoin is far more <a href="#energy-efficient" class="modalbtn modal-trigger">energy-efficient</a> than traditional digital currency networks.</span>	
-
-                                            <li>Innovative Community<br />
-                                                <span class="featurelist">BlackCoin has a strong and dedicated community made up of both talented developers and users working hard to push BlackCoin as far as it will go. <a href="http://blackhalo.info/" class="modalbtn modal-trigger">BlackHalo</a> is a perfect example of this. </span>									  
-
-                                            <li>Wide Merchant Adoption<br />
-                                                <span class="featurelist">New online merchants and services accept BlackCoin every day. Look for BlackCoin in more point of sale applications soon with recent addition to <a href="https://www.coinkite.com">CoinKite</a> merchant services.</span>							  
+                                            <li><?= KEY_FEATURES_UL2_LI1; ?></li>
+                                            <li><?= KEY_FEATURES_UL2_LI2; ?></li>
+                                            <li><?= KEY_FEATURES_UL2_LI3; ?></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -489,8 +475,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">Getting</span>
-                                Started	    
+                                <span class="sub"><?= GETTING_STARTED_GETTING; ?></span>
+<?= GETTING_STARTED_STARTED; ?>	    
                             </h2>
                         </div>
                     </div>
@@ -498,87 +484,76 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <hgroup>
                                 <h2 class="in-view">
-                                    <span class="sub">Getting Started with</span>
-                                    <span class="main">BlackCoin</span>
+                                    <span class="sub"><?= GETTING_STARTED_SUPER; ?></span>
+                                    <span class="main"><?= BLACKCOIN; ?></span>
                                 </h2>
                             </hgroup>
                             <div class="intro user-content">
-                                <p><strong>Enough technical jargon, lets get started with BlackCoin </strong></p>
+                                <p><strong><?= GETTING_STARTED_SUBTITLE; ?></strong></p>
                             </div>
                             <ul class="timeline">
                                 <li class="year">1.</li>
                                 <li>
-                                    <span class="title"><a href="wallets" class="smoothScroll">Download a wallet</a></span>
+                                    <span class="title"><a href="wallets" class="smoothScroll"><?= GETTING_STARTED_STEP1_TITLE; ?></a></span>
                                     <span class="timeline-content">
-                                        <p>First, you need to get a wallet to store your BlackCoins.</p>
-
-                                        <a href="#wallets" class="smoothScroll btn-sm">PC Wallets</a>
-                                        <a href="#web-wallets" class="btn-sm modalbtn modal-trigger">Web Wallets</a>
-                                        <!--<a href="#wallet-guide" class="btn-sm modalbtn modal-trigger">Wallet How-To</a>-->
+                                        <p><?= GETTING_STARTED_STEP1_TEXT; ?></p>
+                                        <a href="#wallets" class="smoothScroll btn-sm"><?= GETTING_STARTED_WALLETS_PC; ?></a>
+                                        <a href="#web-wallets" class="btn-sm modalbtn modal-trigger"><?= GETTING_STARTED_WALLETS_WEB; ?></a>
                                     </span>
                                 </li>
                                 <li class="year">2.</li>
                                 <li>
-                                    <span class="title">Buy BlackCoins</span>
+                                    <span class="title"><?= GETTING_STARTED_STEP2_TITLE; ?></span>
                                     <span class="timeline-content">
-                                        <p>Once you've got your wallet, you can now buy BlackCoins directly or trade for them with Bitcoins.</p>
-                                        <p>BlackCoin Retailers:<br />
-                                            <a href="https://expresscoin.com" target="_blank">Expresscoin <small>(USD, CND)</small></a>
+                                        <p><?= GETTING_STARTED_STEP2_TEXT; ?></p>
+                                        <p><?= GETTING_STARTED_RETAILERS; ?><br />
+                                            <a href="https://expresscoin.com" target="_blank">Expresscoin <small>(USD, CND)</small></a>, 
                                             <a href="https://anycoindirect.eu/buy/blackcoins" target="_blank">Anycoin Direct <small>(EUR)</small></a>
-                                            <!--<a href="http://litecoinfever.com/buy-cryptocurrency/" target="_blank">Litecoinfever <small>(USD, Paypal)</small></a>-->
                                         </p>
-                                        <p>Fiat Exchanges:<br />
+                                        <p><?= GETTING_STARTED_FIATEX; ?><br />
                                             <a href="https://bittylicious.com/" target="_blank">Bittylicious <small>(GBP)</small></a>, 
                                             <a href="https://bter.com/trade/bc_cny" target="_blank">BTER <small>(CNY)</small></a>, 
                                             <a href="https://www.litebit.eu/coin/bc/en/" target="_blank">LiteBit <small>(EURO)</small></a>, 
                                             <a href="https://prelude.io/trade/usd/bc" target="_blank">Prelude <small>(USD)</small></a>,<br />
                                             <a href="https://www.vaultofsatoshi.com/" target="_blank">Vault of Satoshi <small>(USD, CAD)</small></a></p>
-                                        <p>Coin Exchanges:<br />
+                                        <p><?= GETTING_STARTED_COINEX; ?><br />
                                             <a href="https://bittrex.com/Market/Index?MarketName=BTC-BC" target="_blank">Bittrex</a>, <a href="https://bter.com/trade/bc_cny" target="_blank">BTER</a>, 
                                             <a href="https://www.cryptsy.com/markets/view/179" target="_blank">Cryptsy</a>, 
                                             <a href="https://www.mintpal.com/market/BC/BTC" target="_blank">Mintpal</a>, 
                                             <a href="https://poloniex.com/exchange/btc_bc" target="_blank">Poloni.ex</a></p>
-                                        <!--
-                                        <a href="http://howtobuyblackcoin.com" class="btn-sm">How To Buy BlackCoin</a>
-                                        -->
                                     </span>
                                 </li>
                                 <li class="year">3.</li>
                                 <li>
-                                    <span class="title">Stake your BlackCoins</span>
+                                    <span class="title"><?= GETTING_STARTED_STEP3_TITLE; ?></span>
                                     <span class="timeline-content">
-                                        <p>BlackCoin holders receive 1% compounded yearly interest through a process called staking.</p>
-                                        <a href="#staking" class="btn-sm modalbtn modal-trigger">Staking How-To</a>
+                                        <p><?= GETTING_STARTED_STEP3_TEXT; ?></p>
+                                        <a href="#staking" class="btn-sm modalbtn modal-trigger"><?= GETTING_STARTED_STEP3_TEXT1; ?></a>
                                     </span>
                                 </li>
                                 <li style="padding-top:40px;">
-                                    <span class="title">Mine for BlackCoins</span>
+                                    <span class="title"><?= GETTING_STARTED_STEP3_TITLE2; ?></span>
                                     <span class="timeline-content">
-                                        <p>BlackCoin is no longer mineable, but your mining power can be used to mine other coins, trade them, and pay in BlackCoin.</p>
+                                        <p><?= GETTING_STARTED_STEP3_TEXT2; ?></p>
                                         <a href="http://blackcoinpool.com/" class="btn-sm">BlackCoin Pool</a>
-                                        <a href="http://cryptoalts.com/" class="btn-sm">CryptoAlts</a>
                                     </span>
                                 </li>
                                 <li class="year">4.</li>
                                 <li>
-                                    <span class="title">Spend your BlackCoins</span>
+                                    <span class="title"><?= GETTING_STARTED_STEP4_TITLE; ?></span>
                                     <span class="timeline-content">
-                                        <p>Now that you've got some BlackCoins you can do some shopping at many online and retail merchants.</p>
-
-                                        <p>You can locate merchants accepting BlackCoin with these links:</p>
-
-                                        <a href="http://blackcoindirectory.com#products" class="btn-sm">BlackCoin Directory</a>
+                                        <p><?= GETTING_STARTED_STEP4_TEXT; ?></p>
+                                        <p><?= GETTING_STARTED_STEP4_TEXT1; ?></p>
+                                        <a href="http://blackcoindirectory.com" class="btn-sm">BlackCoin Directory</a>
                                         <a href="http://blackcoinmap.com" class="btn-sm">BlackCoin Map</a>
                                     </span>
                                 </li>
                                 <li class="year">5.</li>
                                 <li>
-                                    <span class="title"><a href="#community">Join the community</a></span>
+                                    <span class="title"><a href="#community"><?= GETTING_STARTED_STEP5_TITLE; ?></a></span>
                                     <span class="timeline-content">
-                                        <p>We have a dedicated, positive and friendly community made up of both BlackCoin users and developers.</p> 
-
-
-                                        <a href="#community" class="smoothScroll btn-sm">Join Us Today</a>
+                                        <p><?= GETTING_STARTED_STEP5_TEXT; ?></p>
+                                        <a href="#community" class="smoothScroll btn-sm"><?= GETTING_STARTED_STEP5_EXTRA; ?></a>
                                     </span>
                                 </li>
                             </ul>
@@ -592,8 +567,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">BlackCoin</span>
-                                Wallets		    
+                                <span class="sub"><?= BLACKCOIN; ?></span>
+<?= SIDEBAR_WALLETS; ?>
                             </h2>
                         </div>
                     </div>
@@ -603,8 +578,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <hgroup>
                                 <h2>
-                                    <span class="sub">Download</span>
-                                    <span class="main">A Wallet</span>
+                                    <span class="sub"><?= WALLETS_DOWNLOAD; ?></span>
+                                    <span class="main"><?= WALLETS_WALLET; ?></span>
                                 </h2>
                             </hgroup>
                             <!-- L/R Nav -->
@@ -613,8 +588,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                             <!-- Profile Gallery -->
                             <div class="profile-pagination">
                                 <div class="profile-pagination">
-                                    <div class="swiper-pagination-switch swiper-visible-switch swiper-active-switch">PC</div>
-                                    <div class="swiper-pagination-switch">Smartphone</div>
+                                    <div class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"><?= WALLETS_PC; ?></div>
+                                    <div class="swiper-pagination-switch"><?= WALLETS_SMARTPHONE; ?></div>
                                 </div>
                             </div>
                             <div class="profile-container">
@@ -624,22 +599,22 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                             <!-- Windows --> 
                                             <img src="./img/profile/windows.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="<?php echo $wallet["windows"]; ?>" class="btn" target="_blank">Download Windows <?php echo $wallet["windows_ver"]; ?></a>
+                                                <a href="<?php echo $wallet["windows"]; ?>" class="btn" target="_blank"><?= WALLETS_WINDOWS; ?> <?php echo $wallet["windows_ver"]; ?></a>
                                             </div>
                                             <!-- Linux--> <br><br><br>
                                             <img src="./img/profile/linux.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="<?php echo $wallet["linux"]; ?>" class="btn" target="_blank">Download Linux <?php echo $wallet["linux_ver"]; ?></a>
+                                                <a href="<?php echo $wallet["linux"]; ?>" class="btn" target="_blank"><?= WALLETS_LINUX; ?> <?php echo $wallet["linux_ver"]; ?></a>
                                             </div>
                                             <!-- Mac--> <br><br><br>
                                             <img src="./img/profile/mac.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="<?php echo $wallet["mac"]; ?>" class="btn" target="_blank">Download Mac <?php echo $wallet["mac_ver"]; ?></a>
+                                                <a href="<?php echo $wallet["mac"]; ?>" class="btn" target="_blank"><?= WALLETS_MACOSX; ?> <?php echo $wallet["mac_ver"]; ?></a>
                                             </div>
                                             <!-- Github--> <br><br><br>
                                             <img src="./img/profile/github.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="https://github.com/rat4/blackcoin" class="btn" target="_blank">BlackCoin Codebase</a>
+                                                <a href="https://github.com/rat4/blackcoin" class="btn" target="_blank"><?= WALLETS_SOURCE; ?></a>
                                             </div>
                                         </div>
                                     </div>
@@ -648,12 +623,12 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                             <!-- Android --> <br>
                                             <img src="./img/profile/android.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="https://play.google.com/store/apps/details?id=com.sinet3k.blkice" class="btn" target="_blank"><i>Download Android</i></a>
+                                                <a href="https://play.google.com/store/apps/details?id=com.sinet3k.blkice" class="btn" target="_blank"><i><?= WALLETS_ANDROID; ?></i></a>
                                             </div>
                                             <!-- iOS--> <br><br><br>
                                             <img src="./img/profile/ios.png" alt="" />
                                             <div class="btnContainer">
-                                                <a href="#" class="btn" target="_blank"><i>iOS Coming Soon</i></a>
+                                                <a href="#" class="btn" target="_blank"><i><?= WALLETS_IOS; ?></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -669,8 +644,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">Join the</span>
-                                Community		  
+                                <span class="sub"><?= COMMUNITY_SUPER; ?></span>
+<?= SIDEBAR_COMMUNITY; ?>		  
                             </h2>
                             <br>
                         </div>
@@ -680,8 +655,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <hgroup>
                                 <h2>
-                                    <span class="sub">Join</span>
-                                    <span class="main">Our Community</span>
+                                    <span class="sub"><?= COMMUNITY_TITLE; ?></span>
+                                    <span class="main"><?= COMMUNITY_SUBTITLE; ?></span>
                                 </h2>
                             </hgroup>
                             <!-- Social Outlets -->
@@ -694,7 +669,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                         <span class="sub">Reddit</span> 						
                                     </h3>
                                     <div class="btnContainer">
-                                        <a href="http://www.reddit.com/r/blackcoin/" class="btn" target="_blank">Join Reddit</a>
+                                        <a href="http://www.reddit.com/r/blackcoin/" class="btn" target="_blank"><?= COMMUNITY_REDDIT; ?></a>
                                     </div>
                                 </li>
                                 <li>
@@ -705,7 +680,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                         <span class="sub">Twitter</span> 						
                                     </h3>
                                     <div class="btnContainer">
-                                        <a href="https://twitter.com/coinblack" class="btn" target="_blank">Follow us on Twitter</a>
+                                        <a href="https://twitter.com/coinblack" class="btn" target="_blank"><?= COMMUNITY_TWITTER; ?></a>
                                     </div>
                                 </li>
                                 <li>
@@ -716,7 +691,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                         <span class="sub">IRC</span> 						
                                     </h3>
                                     <div class="btnContainer">
-                                        <a href="http://webchat.freenode.net/?channels=%23blackcoinpool&amp;uio=d4" class="btn" target="_blank">Chat on IRC</a>
+                                        <a href="http://webchat.freenode.net/?channels=%23blackcoinpool&amp;uio=d4" class="btn" target="_blank"><?= COMMUNITY_IRC; ?></a>
                                     </div>
                                 </li>
                                 <li>
@@ -727,7 +702,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                         <span class="sub">Facebook</span> 						
                                     </h3>
                                     <div class="btnContainer">
-                                        <a href="https://www.facebook.com/coinblack" class="btn" target="_blank">Like us on Facebook</a>
+                                        <a href="https://www.facebook.com/coinblack" class="btn" target="_blank"><?= COMMUNITY_FACEBOOK; ?></a>
                                     </div>
                                 </li>
                             </ul>
@@ -741,8 +716,8 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="seperator">
                         <div class="contentContainer">
                             <h2>
-                                <span class="sub">BlackCoin</span>
-                                News		    
+                                <span class="sub"><?= BLACKCOIN; ?></span>
+<?= SIDEBAR_NEWS; ?>		    
                             </h2>
                         </div>
                     </div>
@@ -750,56 +725,45 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     <div class="content">
                         <div class="contentContainer">
                             <!-- News -->
-
-                            <?php // Yayaya we gonna do some php tricks ?>
-
                             <ul class="events-list">
                                 <li class="event-titles">
-                                    <div class="event-title">Article</div>
-                                    <div class="event-title">Date</div>
-                                    <div class="event-title">Author</div>
+                                    <div class="event-title"><?= NEWS_ARTICLE; ?></div>
+                                    <div class="event-title"><?= NEWS_DATE; ?></div>
+                                    <div class="event-title"><?= NEWS_AUTHOR; ?></div>
                                 </li>
-                                <?php // GetSingleNewsItem("d1f41b86a9da"); ?>
-                                <?php
-                                $result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
+<?php
+$result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
 
-                                while ($row = Db::Fetch($result)) {
-                                    // echo "kings";
+while ($row = Db::Fetch($result)) {
+    $uid = $row->post_author;
+    $author = "";
 
-                                    $uid = $row->post_author;
-                                    $author = "";
+    $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
+    while ($rowUser = Db::Fetch($resultUser)) {
+        $author = $rowUser->display_name;
+    }
 
-                                    $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
-                                    while ($rowUser = Db::Fetch($resultUser)) {
-                                        $author = $rowUser->display_name;
-                                    }
+    $url = $row->post_name;
+    $url = "news/" . $row->ID . "/" . $url;
 
-                                    $url = $row->post_name;
-                                    $url = "news/" . $row->ID . "/" . $url;
+    $title = utf8_encode($row->post_title);
 
-                                    $title = $row->post_title;
-                                    $title = utf8_encode($title);
+    $date = explode(' ', $row->post_date);
+    $date = $date[0];
 
-                                    $date = $row->post_date;
-                                    $date = explode(' ', $date);
-                                    $date = $date[0];
+    // Get first 20 preview lines
+    $preview = strip_tags($row->post_content);
+    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
+    $preview .= "...";
+    $preview = utf8_encode($preview);
 
-                                    // Get first 20 preview lines
-                                    $preview = $row->post_content;
-                                    $preview = strip_tags($preview);
-                                    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
-                                    $preview .= "...";
-                                    $preview = utf8_encode($preview);
-
-                                    $img = "";
-
-                                    GetNewsItem($url, $author, $title, $date, $preview, $img);
-                                }
-                                ?>
+    GetNewsItem($url, $author, $title, $date, $preview, "");
+}
+?>
                             </ul>
 
                             <div class="btnContainer">
-                                <a href="news-archive.php" class="btn" style="margin-top:3em;">News Archive</a>
+                                <a href="news-archive.php" class="btn" style="margin-top:3em;"><?= NEWS_ARCHIVE; ?></a>
                             </div>
 
                         </div>
@@ -807,9 +771,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                 </section>
             </main>
         </div>
-
-        <?php include ('inc/modals.php'); ?>
-
+<?php include ('inc/modals.php'); ?>
         <!--Analytics-->
         <script>
                     (function(i, s, o, g, r, a, m) {
@@ -826,9 +788,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
 
                     ga('create', 'UA-45840836-2', 'blackcoin.co');
                     ga('send', 'pageview');
-
         </script>
-
         <script type='text/javascript' src='./js/jquery.mobile.custom.min_2b23bb4a.js'></script>
         <script type='text/javascript' src='./js/modernizr.custom_2b23bb4a.js'></script>
         <script type='text/javascript' src='./js/response.min_2b23bb4a.js'></script>

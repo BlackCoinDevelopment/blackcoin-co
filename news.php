@@ -30,8 +30,7 @@ if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
     $arr["title"] = $title;
 
     // Get first 20 preview lines
-    $preview = $content;
-    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
+    $preview = implode(' ', array_slice(explode(' ', $content), 0, 20));
     $preview .= "...";
     $preview = utf8_encode($preview);
 
