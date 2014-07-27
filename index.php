@@ -180,32 +180,32 @@ $wallet["mac_ver"] = "v1.1.0.1";
                             <div class="contentLeft">						
                                 <div class="quarters">
                                     <h2><?= SUB_INTRO_INNOVATION; ?></h2>
-                                    <p style="height:81px;"><?= SUB_INTRO_INNOVATION_TEXT; ?></p>
+                                    <p style="height:99px;"><?= SUB_INTRO_INNOVATION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#info" class="smoothScroll btn"><?= SUB_INTRO_INNOVATION_EXTRA; ?></a>
+                                        <a href="#info" class="smoothScroll btn" style="font-size:15px;"><?= SUB_INTRO_INNOVATION_EXTRA; ?></a>
                                     </div>
                                 </div>
                                 <div class="quarters">
                                     <h2><?= SUB_INTRO_LIBERATION; ?></h2>		
-                                    <p style="height:81px;"><?= SUB_INTRO_LIBERATION_TEXT; ?></p>	
+                                    <p style="height:99px;"><?= SUB_INTRO_LIBERATION_TEXT; ?></p>	
                                     <div class="btnContainer">
-                                        <a href="#uses" class="smoothScroll btn"><?= SUB_INTRO_LIBERATION_EXTRA; ?></a>
+                                        <a href="#uses" class="smoothScroll btn" style="font-size:15px;"><?= SUB_INTRO_LIBERATION_EXTRA; ?></a>
                                     </div>							
                                 </div>					
                             </div>
                             <div class="contentRight">
                                 <div class="quarters">
                                     <h2><?= SUB_INTRO_ADOPTION; ?></h2>
-                                    <p style="height:81px;"><?= SUB_INTRO_ADOPTION_TEXT; ?></p>
+                                    <p style="height:99px;"><?= SUB_INTRO_ADOPTION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#getting-started" class="smoothScroll btn"><?= SUB_INTRO_ADOPTION_EXTRA ?></a>
+                                        <a href="#getting-started" class="smoothScroll btn" style="font-size:15px;"><?= SUB_INTRO_ADOPTION_EXTRA ?></a>
                                     </div>
                                 </div>
                                 <div class="quarters">
                                     <h2><?= SUB_INTRO_DEDICATION; ?></h2>
-                                    <p style="height:81px;"><?= SUB_INTRO_DEDICATION_TEXT; ?></p>
+                                    <p style="height:99px;"><?= SUB_INTRO_DEDICATION_TEXT; ?></p>
                                     <div class="btnContainer">
-                                        <a href="#community" class="smoothScroll btn"><?= SUB_INTRO_DEDICATION_EXTRA ?></a>
+                                        <a href="#community" class="smoothScroll btn" style="font-size:15px;"><?= SUB_INTRO_DEDICATION_EXTRA ?></a>
                                     </div>
                                 </div>					
                             </div>
