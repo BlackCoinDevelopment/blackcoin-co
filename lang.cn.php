@@ -1,6 +1,6 @@
 <?php
 
-define("ALERT_NOTIFICATION", "The BlackCoin wallet has been updated to v1.1.0.1. Please update. Hardfork at block 319000!");
+define("ALERT_NOTIFICATION", "请将钱包升级至1.1.0.1版，请注意此次升级为强制升级，黑币网络将在区块319000进行硬分叉以升级至PoS 2.0协议");
 
 define("BLACKCOIN", "黑币");
 define("BC_SUBTITLE", "未来的货币");
@@ -17,8 +17,8 @@ define("SIDEBAR_NEWS", "新闻");
 define("BACK_TO_TOP", "回到顶端");
 
 # QUICK WALLET LINKS #
-define("CHOOSE_OPTION", "Choose your option:");
-define("BLACKHALO_OPT", "BlackHalo (Smart Contracts Client Beta)");
+define("CHOOSE_OPTION", "请选择：");
+define("BLACKHALO_OPT", "BlackHalo (智能合约测试版)");
 
 define("SUB_INTRO_INNOVATION", "创新");
 define("SUB_INTRO_INNOVATION_TEXT", "股权证明机制为大部分数字货币带来了速度、安全性以及充满能源效率。");
@@ -108,8 +108,8 @@ define("KEY_FEATURES_UL2_LI1", '环保<br /><span class="featurelist">黑币网�
 define("KEY_FEATURES_UL2_LI2", '有创造力的社区<br /><span class="featurelist">黑币有一个强大而专业的社区，由天才的开发者和用户组成，他们致力于不断推动黑币的发展。</span>');
 define("KEY_FEATURES_UL2_LI3", '广泛的商业接纳度<br /><span class="featurelist">每天都有新的在线商户与服务接受黑币。随着近期加入CoinKite商户服务，可以预期黑币很快会在更多的销售应用中出现。</span>');
 
-define("GETTING_STARTED_GETTING", "GETTING");
-define("GETTING_STARTED_STARTED", "STARTED");
+define("GETTING_STARTED_GETTING", "开始");
+define("GETTING_STARTED_STARTED", "你的黑币之旅");
 define("GETTING_STARTED_SUPER", "开始你的黑币之旅");
 define("GETTING_STARTED_SUBTITLE", "技术方面的说明已经足够多了，让我们开始使用黑币吧！");
 define("GETTING_STARTED_STEP1_TITLE", "下载黑币钱包");
@@ -118,7 +118,7 @@ define("GETTING_STARTED_WALLETS_WEB", "WEB钱包");
 define("GETTING_STARTED_STEP1_TEXT", "首先，你需要获得一个钱包来存储你的黑币。");
 define("GETTING_STARTED_STEP2_TITLE", "购买黑币");
 define("GETTING_STARTED_STEP2_TEXT", "一旦你获取了钱包，就可以直接购买黑币或者用比特币来购买。");
-define("GETTING_STARTED_RETAILERS", "BlackCoin Retailers:");
+define("GETTING_STARTED_RETAILERS", "黑币网店");
 define("GETTING_STARTED_FIATEX", "法币市场:");
 define("GETTING_STARTED_COINEX", "数字货币币交易所");
 define("GETTING_STARTED_STEP3_TITLE", "获取黑币利息");
@@ -136,7 +136,7 @@ define("GETTING_STARTED_STEP5_EXTRA", "现在加入我们");
 define("WALLETS_DOWNLOAD", "下载");
 define("WALLETS_WALLET", "钱包");
 define("WALLETS_PC", "PC");
-define("WALLETS_SMARTPHONE", "Smartphone");
+define("WALLETS_SMARTPHONE", "智能手机");
 define("WALLETS_WINDOWS", "下载WINDOWS");
 define("WALLETS_LINUX", "下载LINUX");
 define("WALLETS_MACOSX", "下载MAC");
@@ -144,22 +144,22 @@ define("WALLETS_SOURCE", "黑币代码库");
 define("WALLETS_ANDROID", "下载Android版");
 define("WALLETS_IOS", "iOS版即将发布");
 
-define("COMMUNITY_SUPER", "Join the");
-define("COMMUNITY_TITLE", "Join");
-define("COMMUNITY_SUBTITLE", "Our Community");
+define("COMMUNITY_SUPER", "加入");
+define("COMMUNITY_TITLE", "加入");
+define("COMMUNITY_SUBTITLE", "我们的社区");
 define("COMMUNITY_REDDIT", "加入REDDIT");
 define("COMMUNITY_TWITTER", "在Twitter上关注我们");
 define("COMMUNITY_IRC", "在IRC畅聊");
 define("COMMUNITY_FACEBOOK", "在Facebook上为我们点赞");
 
-define("NEWS_ARTICLE", "Article");
-define("NEWS_DATE", "Date");
-define("NEWS_AUTHOR", "Author");
-define("NEWS_ARCHIVE", "News Archive");
+define("NEWS_ARTICLE", "文章");
+define("NEWS_DATE", "日期");
+define("NEWS_AUTHOR", "作者");
+define("NEWS_ARCHIVE", "新闻资料库");
 
 # BEGIN MODALS #
-define("POS_SUPER", "BlackCoin is secured by");
-define("POS_TITLE", "Proof of Stake"); // 权益证明 ?
+define("POS_SUPER", "黑币的网络安全");
+define("POS_TITLE", "由权益证明机制保证"); // 权益证明 ?
 define("POS_SUBTITLE", "PoS：由大众运行的系统");
 define("POS_TEXT", "黑币基于一种叫做权益证明（POS）的独特技术。与其他数字货币采用巨大的算力来验证与保障网络不同的是，黑币通过校验人们的币来保障网络安全和处理转账。");
 define("POS_TEXT1", "权益证明（PoS）系统使得黑币比几乎所有其他货币都运作的更快速，你不再需要等待。权益证明确保了黑币仍然是去中心化的；没有任何个人或群体可以取得网络的控制权。");
@@ -212,7 +212,7 @@ define("SERVICES_TITLE", "WEB钱包与服务");
 define("SERVICES_SUBTITLE", "黑币由高质量的WEB服务提供支持。");
 define("SERVICES_TEXT", "WEB钱包是一种由第三方服务商保障的钱包，你拥有他并可以在线接入。你的本地电脑不需要安装任何软件。你可以存储、发送或接收黑币，就像桌面钱包那样。以下是顶尖的黑币WEB钱包：");
 
-define("MOBILE_WALLETS_SUPER", "BlackCoin Mobile Wallets");
+define("MOBILE_WALLETS_SUPER", "BlackCoin 智能手机钱包");
 define("MOBILE_WALLETS_TITLE", "更多敬请期待");
 define("MOBILE_WALLETS_SUBTITLE", "安卓与iOS钱包正在开发中。");
 //define("MOBILE_WALLETS_TEXT", "");
