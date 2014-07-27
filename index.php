@@ -2,27 +2,26 @@
 <?php include ('news.fn.php'); ?>
 <?php include ('config.inc.php'); ?>
 <?php
-
-$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-switch ($lang) {
-    case "cn":
-        include('lang.cn.php');
-        break;
-    case "es":
-        include('lang.es.php');
-        break;
-    default:
-        include('lang.en.php');
-        break;
+if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
+    include ('lang.cn.php');
+} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "es") {
+    include ('lang.es.php');
+} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "en") {
+    include ('lang.en.php');
+} else {
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    switch ($lang) {
+        case "cn":
+            include('lang.cn.php');
+            break;
+        case "es":
+            include('lang.es.php');
+            break;
+        default:
+            include('lang.en.php');
+            break;
+    }
 }
-
-//if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
-//    include ('lang.cn.php');
-//} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "es") {
-//    include ('lang.es.php');
-//} else {
-//    include ('lang.en.php');
-//}
 ?>
 
 <?php
