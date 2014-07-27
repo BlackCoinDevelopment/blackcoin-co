@@ -118,7 +118,7 @@ define("GETTING_STARTED_WALLETS_WEB", "WEB钱包");
 define("GETTING_STARTED_STEP1_TEXT", "首先，你需要获得一个钱包来存储你的黑币。");
 define("GETTING_STARTED_STEP2_TITLE", "购买黑币");
 define("GETTING_STARTED_STEP2_TEXT", "一旦你获取了钱包，就可以直接购买黑币或者用比特币来购买。");
-define("GETTING_STARTED_RETAILERS", "黑币网店");
+define("GETTING_STARTED_RETAILERS", "黑币兑换平台");
 define("GETTING_STARTED_FIATEX", "法币市场:");
 define("GETTING_STARTED_COINEX", "数字货币币交易所");
 define("GETTING_STARTED_STEP3_TITLE", "获取黑币利息");
@@ -158,8 +158,8 @@ define("NEWS_AUTHOR", "作者");
 define("NEWS_ARCHIVE", "新闻资料库");
 
 # BEGIN MODALS #
-define("POS_SUPER", "黑币的网络安全");
-define("POS_TITLE", "由权益证明机制保证"); // 权益证明 ?
+define("POS_SUPER", "黑币的网络安全依赖于");
+define("POS_TITLE", "权益证明机制"); // 权益证明 ?
 define("POS_SUBTITLE", "PoS：由大众运行的系统");
 define("POS_TEXT", "黑币基于一种叫做权益证明（POS）的独特技术。与其他数字货币采用巨大的算力来验证与保障网络不同的是，黑币通过校验人们的币来保障网络安全和处理转账。");
 define("POS_TEXT1", "权益证明（PoS）系统使得黑币比几乎所有其他货币都运作的更快速，你不再需要等待。权益证明确保了黑币仍然是去中心化的；没有任何个人或群体可以取得网络的控制权。");
