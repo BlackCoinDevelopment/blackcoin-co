@@ -2,13 +2,27 @@
 <?php include ('news.fn.php'); ?>
 <?php include ('config.inc.php'); ?>
 <?php
-if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
-    include ('lang.cn.php');
-} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "es") {
-    include ('lang.es.php');
-} else {
-    include ('lang.en.php');
+
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+switch ($lang) {
+    case "cn":
+        include('lang.cn.php');
+        break;
+    case "es":
+        include('lang.es.php');
+        break;
+    default:
+        include('lang.en.php');
+        break;
 }
+
+//if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
+//    include ('lang.cn.php');
+//} else if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "es") {
+//    include ('lang.es.php');
+//} else {
+//    include ('lang.en.php');
+//}
 ?>
 
 <?php
@@ -208,7 +222,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= WHAT_IS_TITLE; ?></span>
-<?= BLACKCOIN; ?>	    
+                                <?= BLACKCOIN; ?>	    
                             </h2>
                         </div>
                     </div>
@@ -361,7 +375,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= BLACKCOIN; ?></span>
-<?= SIDEBAR_SPECS; ?>   
+                                <?= SIDEBAR_SPECS; ?>   
                             </h2>
                         </div>
                     </div>
@@ -476,7 +490,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= GETTING_STARTED_GETTING; ?></span>
-<?= GETTING_STARTED_STARTED; ?>	    
+                                <?= GETTING_STARTED_STARTED; ?>	    
                             </h2>
                         </div>
                     </div>
@@ -568,7 +582,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= BLACKCOIN; ?></span>
-<?= SIDEBAR_WALLETS; ?>
+                                <?= SIDEBAR_WALLETS; ?>
                             </h2>
                         </div>
                     </div>
@@ -645,7 +659,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= COMMUNITY_SUPER; ?></span>
-<?= SIDEBAR_COMMUNITY; ?>		  
+                                <?= SIDEBAR_COMMUNITY; ?>		  
                             </h2>
                             <br>
                         </div>
@@ -717,7 +731,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                         <div class="contentContainer">
                             <h2>
                                 <span class="sub"><?= BLACKCOIN; ?></span>
-<?= SIDEBAR_NEWS; ?>		    
+                                <?= SIDEBAR_NEWS; ?>		    
                             </h2>
                         </div>
                     </div>
@@ -731,35 +745,35 @@ $wallet["mac_ver"] = "v1.1.0.1";
                                     <div class="event-title"><?= NEWS_DATE; ?></div>
                                     <div class="event-title"><?= NEWS_AUTHOR; ?></div>
                                 </li>
-<?php
-$result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
+                                <?php
+                                $result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
 
-while ($row = Db::Fetch($result)) {
-    $uid = $row->post_author;
-    $author = "";
+                                while ($row = Db::Fetch($result)) {
+                                    $uid = $row->post_author;
+                                    $author = "";
 
-    $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
-    while ($rowUser = Db::Fetch($resultUser)) {
-        $author = $rowUser->display_name;
-    }
+                                    $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
+                                    while ($rowUser = Db::Fetch($resultUser)) {
+                                        $author = $rowUser->display_name;
+                                    }
 
-    $url = $row->post_name;
-    $url = "news/" . $row->ID . "/" . $url;
+                                    $url = $row->post_name;
+                                    $url = "news/" . $row->ID . "/" . $url;
 
-    $title = utf8_encode($row->post_title);
+                                    $title = utf8_encode($row->post_title);
 
-    $date = explode(' ', $row->post_date);
-    $date = $date[0];
+                                    $date = explode(' ', $row->post_date);
+                                    $date = $date[0];
 
-    // Get first 20 preview lines
-    $preview = strip_tags($row->post_content);
-    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
-    $preview .= "...";
-    $preview = utf8_encode($preview);
+                                    // Get first 20 preview lines
+                                    $preview = strip_tags($row->post_content);
+                                    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
+                                    $preview .= "...";
+                                    $preview = utf8_encode($preview);
 
-    GetNewsItem($url, $author, $title, $date, $preview, "");
-}
-?>
+                                    GetNewsItem($url, $author, $title, $date, $preview, "");
+                                }
+                                ?>
                             </ul>
 
                             <div class="btnContainer">
@@ -771,7 +785,7 @@ while ($row = Db::Fetch($result)) {
                 </section>
             </main>
         </div>
-<?php include ('inc/modals.php'); ?>
+        <?php include ('inc/modals.php'); ?>
         <!--Analytics-->
         <script>
                     (function(i, s, o, g, r, a, m) {
