@@ -146,7 +146,7 @@
             </h2>
             <p style="padding-bottom:1em;"><?=SERVICES_TEXT;?></p>
             <a href="https://coinkite.com/"><img src="./img/coinkite.png" alt="CoinKite" style="border-radius:2px;"></a>
-            <a href="https://holytransaction.com/"><img src="https://holytransaction.com/img/logo.png" alt="HolyTransaction" style="border-radius:2px;"></a>					
+            <a href="https://holytransaction.com/"><img src="https://holytransaction.com/images/logo.png" alt="HolyTransaction" style="border-radius:2px;"></a>					
             <a href="https://mywl.lt/"><img src="./img/mywllt.png" alt="MyWl.lt" style="border-radius:2px;"></a>
         </div>
     </div>
