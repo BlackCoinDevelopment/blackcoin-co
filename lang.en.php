@@ -1,6 +1,6 @@
 <?php
 
-define("ALERT_NOTIFICATION", "The BlackCoin wallet has been updated to v1.1.0.1. Please update. Hardfork at block 319000!");
+define("ALERT_NOTIFICATION", "The BlackCoin wallet has been updated to v1.1.0.1. PoS 2.0 Transition Flawlessly Executed!");
 
 define("BLACKCOIN", "BlackCoin");
 define("BC_SUBTITLE", "Currency of the future");
