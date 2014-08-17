@@ -1,6 +1,6 @@
 <?php
 
-define("ALERT_NOTIFICATION", "请将钱包升级至1.1.0.1版，请注意此次升级为强制升级，黑币网络将在区块319000进行硬分叉以升级至PoS 2.0协议");
+define("ALERT_NOTIFICATION", "请将钱包升级至1.1.0.1版，黑币网络已成功升级至PoS 2.0协议");
 
 define("BLACKCOIN", "黑币");
 define("BC_SUBTITLE", "未来的货币");
