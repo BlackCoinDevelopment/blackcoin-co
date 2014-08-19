@@ -156,7 +156,7 @@ $wallet["mac_ver"] = "v1.1.1";
                                 <br>
                                 <a class="btn-wallet" href="blackcoin-pos-protocol-v2-whitepaper.pdf"><img class="icon" src="./img/profile/whitepaper.png" width="27px" target="_blank" alt="">POS 2.0 Whitepaper</a>
                                 <br>
-                                <p style="margin-top:9px;">Latest wallet update: 3rd of July, 2014</p>
+                                <p style="margin-top:9px;">Latest wallet update: 19th of August, 2014</p>
                             </div>
                             <div id="blackhaloshowdiv" style="display:none;">
                                 <a class="btn-wallet" href="http://www.davtonia.com/blackhalo/blackhalo32.zip"><img class="icon" src="./img/profile/windows-sm.png" alt="">Windows 32-bit</a>
