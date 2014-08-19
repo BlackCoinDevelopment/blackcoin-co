@@ -26,12 +26,12 @@ if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
 
 <?php
 $wallet = array();
-$wallet["windows"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.0.1-windows.zip";
-$wallet["windows_ver"] = "v1.1.0.1";
-$wallet["linux"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.0.1-linux.zip";
-$wallet["linux_ver"] = "v1.1.0.1";
-$wallet["mac"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/BlackCoin-Qt-MacOSX-v1.1.0.1.zip";
-$wallet["mac_ver"] = "v1.1.0.1";
+$wallet["windows"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.1-windows.zip";
+$wallet["windows_ver"] = "v1.1.1";
+$wallet["linux"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.1-linux.zip";
+$wallet["linux_ver"] = "v1.1.1";
+$wallet["mac"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/BlackCoin-Qt-MacOSX-v1.1.1.zip";
+$wallet["mac_ver"] = "v1.1.1";
 
 // edit test
 ?>
@@ -107,7 +107,7 @@ $wallet["mac_ver"] = "v1.1.0.1";
                     </div>
                 </section>
 
-                <div id="notifications">
+                <div id="notifications" style="display:none;">
                     <p><?= ALERT_NOTIFICATION; ?></p>
                 </div>
 
