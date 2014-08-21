@@ -1,6 +1,3 @@
-<?php include ('lib.pdo.php'); ?>
-<?php include ('news.fn.php'); ?>
-<?php include ('config.inc.php'); ?>
 <?php
 if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
     include ('lang.cn.php');
@@ -22,9 +19,7 @@ if (isset($_REQUEST["lang"]) && $_REQUEST["lang"] == "cn") {
             break;
     }
 }
-?>
 
-<?php
 $wallet = array();
 $wallet["windows"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.1-windows.zip";
 $wallet["windows_ver"] = "v1.1.1";
@@ -32,8 +27,6 @@ $wallet["linux"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/blackcoin-1.1.1
 $wallet["linux_ver"] = "v1.1.1";
 $wallet["mac"] = "http://www.maarx.nl/maarx.nl/blackcoin/files/BlackCoin-Qt-MacOSX-v1.1.1.zip";
 $wallet["mac_ver"] = "v1.1.1";
-
-// edit test
 ?>
 
 <!DOCTYPE html>
@@ -149,14 +142,13 @@ $wallet["mac_ver"] = "v1.1.1";
                                 <a class="btn-wallet" href="<?php echo $wallet["windows"]; ?>"><img class="icon" src="./img/profile/windows-sm.png" alt="">Windows</a>
                                 <a class="btn-wallet" href="<?php echo $wallet["linux"]; ?>"><img class="icon" src="./img/profile/linux-sm.png" alt="">Linux</a>
                                 <a class="btn-wallet" href="<?php echo $wallet["mac"]; ?>"><img class="icon" src="./img/profile/mac-sm.png" alt="">OS X</a>
-                                <a class="btn-wallet modalbtn modal-trigger" href="https://play.google.com/store/apps/details?id=com.sinet3k.blkice"><img class="icon" src="./img/profile/android-sm.png" alt="">Android</a>
+                                <a class="btn-wallet modalbtn modal-trigger" href="#mobile-soon"><img class="icon" src="./img/profile/android-sm.png" alt="">Android</a>
                                 <a class="btn-wallet modalbtn modal-trigger" href="#mobile-soon"><img class="icon" src="./img/profile/mac-sm.png" alt=""><span style="text-transform:lowercase;">i</span>OS</a>
                                 <a class="btn-wallet modalbtn modal-trigger" href="#web-wallets"><img class="icon" src="./img/profile/web-sm.png" alt="">Web Wallets</a>
-                                <!--<a class="btn-wallet modalbtn modal-trigger" href="#web-wallets"><img class="icon" src="./img/profile/web-sm.png" alt="">Apps</a>-->
                                 <br>
                                 <a class="btn-wallet" href="blackcoin-pos-protocol-v2-whitepaper.pdf"><img class="icon" src="./img/profile/whitepaper.png" width="27px" target="_blank" alt="">POS 2.0 Whitepaper</a>
                                 <br>
-                                <p style="margin-top:9px;">Latest wallet update: 19th of August, 2014</p>
+                                <p style="margin-top:9px;">Latest wallet update: 19th of August, 2014 <a href="http://blkfeed.com/topic/156/wallet-update-v1-1-1/3" target="_blank">(v1.1.1)</a></p>
                             </div>
                             <div id="blackhaloshowdiv" style="display:none;">
                                 <a class="btn-wallet" href="http://www.davtonia.com/blackhalo/blackhalo32.zip"><img class="icon" src="./img/profile/windows-sm.png" alt="">Windows 32-bit</a>
@@ -171,8 +163,7 @@ $wallet["mac_ver"] = "v1.1.1";
                         </div>
                     </div>
                 </section>
-
-
+				
                 <!-- Sub-intro -->
                 <section class="section-subintro">
                     <div class="content">
@@ -213,7 +204,7 @@ $wallet["mac_ver"] = "v1.1.1";
                         </div>
                     </div>
                 </section>  
-
+				
                 <!-- What is BlackCoin -->			   
                 <section class="section-audience" id="info">
                     <!-- Seperator -->
@@ -742,41 +733,35 @@ $wallet["mac_ver"] = "v1.1.1";
                                 <li class="event-titles">
                                     <div class="event-title"><?= NEWS_ARTICLE; ?></div>
                                     <div class="event-title"><?= NEWS_DATE; ?></div>
-                                    <div class="event-title"><?= NEWS_AUTHOR; ?></div>
                                 </li>
                                 <?php
-                                $result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC LIMIT 0 , 5");
-
-                                while ($row = Db::Fetch($result)) {
-                                    $uid = $row->post_author;
-                                    $author = "";
-
-                                    $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
-                                    while ($rowUser = Db::Fetch($resultUser)) {
-                                        $author = $rowUser->display_name;
-                                    }
-
-                                    $url = $row->post_name;
-                                    $url = "news/" . $row->ID . "/" . $url;
-
-                                    $title = utf8_encode($row->post_title);
-
-                                    $date = explode(' ', $row->post_date);
-                                    $date = $date[0];
-
-                                    // Get first 20 preview lines
-                                    $preview = strip_tags($row->post_content);
-                                    $preview = implode(' ', array_slice(explode(' ', $preview), 0, 20));
-                                    $preview .= "...";
-                                    $preview = utf8_encode($preview);
-
-                                    GetNewsItem($url, $author, $title, $date, $preview, "");
-                                }
+								
+								function GetNewsItem($url, $title, $date) { ?>
+								<li>
+									<div class="event-text">
+										<div class="event-details user-content">
+											<h4 class="event-title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h4>
+											<div class="event-date">
+												<?php echo $date;?>						
+											</div>
+										</div>
+									</div>
+								</li>
+								<?php }								
+								$newsData = json_decode(file_get_contents("http://blackcoinsquare.org:8080/php-helpers/newsData.php"));
+								
+								for($i = 0; $i < 5; $i++){
+									$item = $newsData[count($newsData)-$i-1];
+									$date = isset($item->date) ? $item->date : "???";
+									GetNewsItem($item->url, $item->title, $date);
+								}
                                 ?>
                             </ul>
 
                             <div class="btnContainer">
                                 <a href="news-archive.php" class="btn" style="margin-top:3em;"><?= NEWS_ARCHIVE; ?></a>
+								<a href="http://dailyblackcoin.com" class="btn" style="margin-top:3em;" target="_blank">The Daily BlackCoin</a><br><br>
+								<i>Note: all data is taken from <a style="color:#9E9E9E;" href="http://blkfeed.com/" target="_blank">blkfeed</a>, a BlackCoin social hub</i>
                             </div>
 
                         </div>
@@ -784,23 +769,186 @@ $wallet["mac_ver"] = "v1.1.1";
                 </section>
             </main>
         </div>
-        <?php include ('inc/modals.php'); ?>
+        <!-- Modals -->
+		<div class="form modal-form gc-modal" id="proof-of-stake">
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=POS_SUPER;?></span>
+						<?=POS_TITLE;?>
+					</h2>
+					<h2><span class="sub"><?=POS_SUBTITLE;?></span></h2>
+					<p><?=POS_TEXT;?></p>
+					<p><?=POS_TEXT1;?></p>
+					<p><?=POS_TEXT2;?></p>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="one-percent-interest">
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=INTEREST_SUPER;?></span>
+						<?=INTEREST_TITLE;?>
+					</h2>
+					<h2>
+						<span class="sub"><?=INTEREST_SUBTITLE;?></span>
+					</h2>
+					<p><?=INTEREST_TEXT;?></p>
+				</div>
+			</div>
+		</div>
+		<!--<div class="form modal-form gc-modal" id="wallet-guide">
+			   <div class="gc-modal-wrapper">
+					  <div class="gc-modal-container">
+							 <h2 class="form-title">
+								<span class="sub">Installing and using your</span>
+								BlackCoin Wallet    
+							 </h2>
+					  </div>
+			   </div>
+		</div>-->
+		<div class="form modal-form gc-modal" id="staking">
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=TUT_STAKING_SUPER;?></span>
+						<?=TUT_STAKING_TITLE;?>   
+					</h2>
+					<h2>1.<span class="sub"><?=TUT_STAKING_1_TITLE;?></span></h2>
+					
+					<h2>2.<span class="sub"><?=TUT_STAKING_2_TITLE;?></span></h2>						
+					<img src="./img/wallet/balance.png" alt="">
+					<p><?=TUT_STAKING_2_TEXT;?></p>
+					
+					<h2>3.<span class="sub"><?=TUT_STAKING_3_TITLE;?></span></h2>
+					<img src="./img/wallet/sync.png" alt="">
+					<p><?=TUT_STAKING_3_TEXT;?></p>
+
+					<h2>4.<span class="sub"><?=TUT_STAKING_4_TITLE;?></span></h2>
+					<img src="./img/wallet/unlock.png" alt="">
+					<p><?=TUT_STAKING_4_TEXT;?></p>
+
+					<h2>5.<span class="sub"><?=TUT_STAKING_5_TITLE;?></span></h2>
+					<img src="./img/wallet/staking.png" alt="">
+					<p><?=TUT_STAKING_5_TEXT;?></p>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="international-payments">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=INTERNATIONAL_SUPER;?></span>
+						<?=INTERNATIONAL_TITLE;?>   
+					</h2>
+					<h2>
+						<span class="sub"><?=INTERNATIONAL_SUBTITLE;?></span>
+					</h2>
+					<p><?=INTERNATIONAL_TEXT;?></p>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="point-of-sale">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=TRANSACTIONS_SUPER;?></span>
+						<?=TRANSACTIONS_TITLE;?>    
+					</h2>
+					<h2>
+						<span class="sub"><?=TRANSACTIONS_SUBTITLE;?></span>
+					</h2>
+					<p><?=TRANSACTIONS_TEXT;?></p>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="open-source">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=OPEN_SOURCE_SUPER;?></span>
+						<?=OPEN_SOURCE_TITLE;?>
+					</h2>
+					<h2>
+						<span class="sub"><?=OPEN_SOURCE_SUBTITLE;?></span>
+					</h2>
+					<p><?=OPEN_SOURCE_TEXT;?></p>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="energy-efficient">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=ENERGY_EFFICIENT_SUPER;?></span>
+						<?=ENERGY_EFFICIENT_TITLE;?>
+					</h2>
+					<h2>
+						<span class="sub"><?=ENERGY_EFFICIENT_SUBTITLE;?></span>
+					</h2>
+					<p><?=ENERGY_EFFICIENT_TEXT;?></p>
+				</div>
+			</div>
+		</div>				   
+		<div class="form modal-form gc-modal" id="decentralized-network">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=SECURE_DECENTRALIZED_SUPER;?></span>
+						<?=SECURE_DECENTRALIZED_TITLE;?>
+					</h2>
+					<h2>
+						<span class="sub"><?=SECURE_DECENTRALIZED_SUBTITLE;?></span>
+					</h2>		
+					<p><?=SECURE_DECENTRALIZED_TEXT;?></p>
+				</div>
+			</div>
+		</div>			   
+		<div class="form modal-form gc-modal" id="web-wallets">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=SERVICES_SUPER;?></span>
+						<?=SERVICES_TITLE;?>  
+					</h2>
+					<h2>
+						<span class="sub"><?=SERVICES_SUBTITLE;?></span>
+					</h2>
+					<p style="padding-bottom:1em;"><?=SERVICES_TEXT;?></p>
+					<a href="https://coinkite.com/"><img src="./img/coinkite.png" alt="CoinKite" style="border-radius:2px;"></a>
+					<a href="https://holytransaction.com/"><img src="https://holytransaction.com/images/logo.png" alt="HolyTransaction" style="border-radius:2px;"></a>					
+					<a href="https://mywl.lt/"><img src="./img/mywllt.png" alt="MyWl.lt" style="border-radius:2px;"></a>
+				</div>
+			</div>
+		</div>
+		<div class="form modal-form gc-modal" id="mobile-soon">			   
+			<div class="gc-modal-wrapper">
+				<div class="gc-modal-container">
+					<h2 class="form-title">
+						<span class="sub"><?=MOBILE_WALLETS_SUPER;?></span>
+						<?=MOBILE_WALLETS_TITLE;?>
+					</h2>
+					<h2><span class="sub"><?=MOBILE_WALLETS_SUBTITLE;?></span></h2>
+				</div>
+			</div>
+		</div>
         <!--Analytics-->
         <script>
-                    (function(i, s, o, g, r, a, m) {
-                        i['GoogleAnalyticsObject'] = r;
-                        i[r] = i[r] || function() {
-                            (i[r].q = i[r].q || []).push(arguments)
-                        }, i[r].l = 1 * new Date();
-                        a = s.createElement(o),
-                                m = s.getElementsByTagName(o)[0];
-                        a.async = 1;
-                        a.src = g;
-                        m.parentNode.insertBefore(a, m)
-                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-                    ga('create', 'UA-45840836-2', 'blackcoin.co');
-                    ga('send', 'pageview');
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+						m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	
+			ga('create', 'UA-45840836-2', 'blackcoin.co');
+			ga('send', 'pageview');
         </script>
         <script type='text/javascript' src='./js/jquery.mobile.custom.min_2b23bb4a.js'></script>
         <script type='text/javascript' src='./js/modernizr.custom_2b23bb4a.js'></script>

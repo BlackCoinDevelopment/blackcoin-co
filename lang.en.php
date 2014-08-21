@@ -152,7 +152,7 @@ define("COMMUNITY_TWITTER", "Follow us on Twitter");
 define("COMMUNITY_IRC", "Chat on IRC");
 define("COMMUNITY_FACEBOOK", "Like us on Facebook");
 
-define("NEWS_ARTICLE", "Article");
+define("NEWS_ARTICLE", "Highlights");
 define("NEWS_DATE", "Date");
 define("NEWS_AUTHOR", "Author");
 define("NEWS_ARCHIVE", "News Archive");

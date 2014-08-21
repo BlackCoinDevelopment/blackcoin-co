@@ -1,56 +1,36 @@
-<?php include ('lib.pdo.php'); ?>
-<?php include ('news.fn.php'); ?>
-<?php include ('config.inc.php'); ?>
-
-<?php
+<?php 
 if (isset($_REQUEST["json"]) && $_REQUEST["json"] == "true") {
     PrintArchiveJSON();
     die(); // dont execute rest of page
 }
 
 function PrintArchiveJSON() {
-    PrintArchive(true);
+    echo '[{"url":"http://blkfeed.com", "title":"deprecated", "preview":"please use blkfeed, blackcoin.co newsfeed is deprecated", "date":"21-08-2014"}]';
 }
 
 function PrintArchive($json = false) {
-    if ($json) {
-        $jsonArr = array();
-    }
-    $result = Db::Query("SELECT * FROM `wp_posts` WHERE post_status = 'publish' AND post_type='post' ORDER BY  `wp_posts`.`post_date` DESC");
-    while ($row = Db::Fetch($result)) {
-        $uid = $row->post_author;
-        $author = "";
-
-        $resultUser = Db::Query("SELECT * FROM `wp_users` WHERE ID = '$uid'");
-        while ($rowUser = Db::Fetch($resultUser)) {
-            $author = $rowUser->display_name;
-        }
-
-        $url = $row->post_name;
-        $url = "news/" . $row->ID . "/" . $url;
-
-        $title = $row->post_title;
-        $title = utf8_encode($title);
-
-        $date = $row->post_date;
-        $date = explode(' ', $date);
-        $date = $date[0];
-
-        if ($json) {
-            $arr = array();
-            $arr["url"] = $url;
-            $arr["author"] = $author;
-            $arr["title"] = $title;
-            $arr["date"] = $date;
-            array_push($jsonArr, $arr);
-        } else {
-            GetNewsArchive($url, $author, $title, $date);
-        }
-    }
-    if ($json)
-        print_r(json_encode($jsonArr));
+    $newsData = json_decode(file_get_contents("http://blackcoinsquare.org:8080/php-helpers/newsData.php"));
+	
+	for($i = 0; $i < count($newsData); $i++){
+		$item = $newsData[count($newsData)-$i-1];
+		$date = isset($item->date) ? $item->date : "???";
+		GetNewsArchive($item->url, $item->title, $date);
+	}
 }
-?>
+
+function GetNewsArchive($url, $title, $date) { ?>
+<li>
+	<div class="event-text">
+		<div class="event-details user-content">
+			<h4 class="event-title"><a href="<?php echo $url; ?>"><?php echo $title; ?></a></h4>
+			<div class="event-date">
+				<?php echo $date;?>						
+			</div>
+		</div>
+	</div>
+</li>
+<?php } ?>
+
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -89,7 +69,7 @@ function PrintArchive($json = false) {
             <div class="sidebar">
                 <nav class="mainMenu">
                     <ul class="menu">
-                        <li><a href="../index.php" ><i class="icon-bbshield"></i><span class="text">BlackCoin Homepage</span></a></li>
+                        <li><a href="index.php" ><i class="icon-bbshield"></i><span class="text">BlackCoin Homepage</span></a></li>
                     </ul>
                 </nav>
                 <nav class="backToTop">
@@ -116,13 +96,12 @@ function PrintArchive($json = false) {
                     <!-- Content -->
                     <div class="content">
                         <div class="contentContainer">
+							<i>Note: all data is taken from <a style="color:#9E9E9E;" href="http://blkfeed.com/" target="_blank">blkfeed</a>, a BlackCoin social hub. If you want to download the official (old) news archive of blackcoin.co, click <a style="color:#9E9E9E;" href="blackcoin-news-archive.pdf" target="_blank">here</a>.</i>
                             <!-- News -->
-
-                            <ul class="events-list">
+                            <ul class="events-list" style="margin-top:18px;">
                                 <li class="event-titles">
-                                    <div class="event-title">Article</div>
+                                    <div class="event-title">Highlights</div>
                                     <div class="event-title">Date</div>
-                                    <div class="event-title">Author</div>
                                 </li>
                                 <?php
                                 PrintArchive(); // call function
@@ -133,7 +112,6 @@ function PrintArchive($json = false) {
                 </section>
             </main>
         </div>
-
         <!--Analytics-->
         <script>
             (function(i, s, o, g, r, a, m) {
@@ -150,7 +128,6 @@ function PrintArchive($json = false) {
 
             ga('create', 'UA-45840836-2', 'blackcoin.co');
             ga('send', 'pageview');
-
         </script>
 
         <script type='text/javascript' src='./js/jquery.mobile.custom.min_2b23bb4a.js'></script>

@@ -3765,20 +3765,15 @@ main {
     text-align: center;
   }
   .section-events .events-list .event-titles .event-title:nth-child(1) {
-    width: 50%;
+    width: 80%;
     text-align: left;
-
   }
   .section-events .events-list .event-titles .event-title:nth-child(2) {
-    width: 25%;
-  }
-  .section-events .events-list .event-titles .event-title:nth-child(3) {
-    width: 25%;
+    width: 20%;
   }
   .section-events .events-list li {
     margin-bottom: 3em;
   }
-
   .section-events .events-list li .event-text .event-title,
   .section-events .events-list li .event-text .event-date,
   .section-events .events-list li .event-text .event-location {
@@ -3788,23 +3783,13 @@ main {
   .section-events .events-list li .event-text .event-title {
     float: left;
     font-size: 1.4em;
-    width: 50%;
+    width: 80%;
 	font-weight:bold;
   }
   .section-events .events-list li .event-text .event-date {
     float: left;
-    width: 25%;
+    width: 20%;
     text-align: center;
-  }
-  .section-events .events-list li .event-text .event-location {
-    float: right;
-    width: 25%;
-    text-align: center;
-  }
-  .section-events .events-list li .event-text .event-description {
-    float: left;
-    clear: left;
-    width: 50%;
   }
 }
 
